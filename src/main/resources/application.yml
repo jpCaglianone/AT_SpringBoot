@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: AT_SpringBoot
+  security:
+    user:
+      name: meuusuario
+      password: minhasenha
