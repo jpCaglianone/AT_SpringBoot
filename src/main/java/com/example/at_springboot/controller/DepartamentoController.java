@@ -26,12 +26,34 @@ public class DepartamentoController {
     }
 
     @PostMapping("/inserir")
-    public DepartamentoDTO criar(@RequestBody DepartamentoDTO funcionarioDTO) {
-        Departamento departamento = DepartamentoConverter.toEntity(funcionarioDTO);
+    public DepartamentoDTO criar(@RequestBody DepartamentoDTO departamentoDTO) {
+        Departamento departamento = DepartamentoConverter.toEntity(departamentoDTO);
         return DepartamentoConverter.departamentoDTO(departamentoService.Salvar(departamento));
     }
 
     @PutMapping("/editar")
-    public DepartamentoDTO editar(@RequestBody DepartamentoDTO departamento) {
-       return departamentoService.Editar(departamento).streeam().map(DepartamentoConverter::departamentoDTO).collect(Collectors.toList());
+    public String editar(@RequestBody DepartamentoDTO departamentoDTO) {
+
+        Departamento departamento = DepartamentoConverter.toEntity(departamentoDTO);
+        int linhasAfetadas = departamentoService.Editar(departamento);
+        if (linhasAfetadas == 0){
+            return "Nenhuma linha afetada";
+        }
+        else{
+            String mensagem = linhasAfetadas + " linhas afetadas";
+            return mensagem;
+        }
+    }
+
+
+    @DeleteMapping("/deletar")
+    public String deletar(@RequestBody Long id) {
+
+        if (departamentoService.Excluir(id)){
+            return "exclusao realizada";
+        }
+        else {
+            return "exclusao nao pode ser realizada";
+        }
+    }
 }

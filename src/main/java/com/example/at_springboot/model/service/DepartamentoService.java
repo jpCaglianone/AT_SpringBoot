@@ -1,5 +1,6 @@
 package com.example.at_springboot.model.service;
 
+import com.example.at_springboot.model.dto.DepartamentoDTO;
 import com.example.at_springboot.model.entity.Departamento;
 import com.example.at_springboot.model.repository.DepartamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,18 @@ public class DepartamentoService {
         return departamentoRepository.save(departamento);
     }
 
-    public Departamento Editar(Departamento departamento) {
-        return departamentoRepository.edit(departamento);
+    public int Editar(Departamento departamento) {
+        int updatedRows = departamentoRepository.edit(departamento.getId(), departamento.getNome(), departamento.getLocal());
+        return updatedRows;
+    }
+
+    public boolean Excluir(Long id) {
+        try{
+            departamentoRepository.deleteById(id);
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
     }
 }

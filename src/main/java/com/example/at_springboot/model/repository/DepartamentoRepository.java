@@ -8,17 +8,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Repository
 public interface DepartamentoRepository extends JpaRepository<Departamento, Long> {
 
-
     @Modifying
     @Transactional
-    @Query("Update Departamento d SET" +
-            "d.nome = :nome," +
-            "d.local = :local" +
-            "where d.id = :id")
-    Departamento edit (@Param("id") int id, @Param("nome") int nome, @Param("local") int local);
+    @Query("UPDATE Departamento d SET d.nome = :nome, d.local = :local WHERE d.id = :id")
+    int edit(@Param("id") Long id, @Param("nome") String nome, @Param("local") String local);
 }
