@@ -1,11 +1,23 @@
 package com.example.at_springboot.model.converter;
 
-import com.example.at_springboot.model.entity.Funcionario;
 import com.example.at_springboot.model.dto.FuncionarioDTO;
+import com.example.at_springboot.model.entity.Departamento;
+import com.example.at_springboot.model.entity.Funcionario;
+import com.example.at_springboot.model.service.DepartamentoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FuncionarioConverter {
 
-    public static FuncionarioDTO toDTO(Funcionario funcionario) {
+    private DepartamentoService departamentoService;
+
+    @Autowired
+    public FuncionarioConverter(DepartamentoService departamentoService) {
+        this.departamentoService = departamentoService;
+    }
+
+    public FuncionarioDTO toDTO(Funcionario funcionario) {
         FuncionarioDTO dto = new FuncionarioDTO();
         dto.setId(funcionario.getId());
         dto.setNome(funcionario.getNome());
@@ -13,11 +25,13 @@ public class FuncionarioConverter {
         dto.setTelefone(funcionario.getTelefone());
         dto.setEmail(funcionario.getEmail());
         dto.setDataDeNascimento(funcionario.getDataDeNascimento());
-        dto.setDepartamentoId(funcionario.getDepartamento() != null ? funcionario.getDepartamento().getId() : null);
+        if (funcionario.getDepartamento() != null) {
+            dto.setDepartamentoId(funcionario.getDepartamento().getId());
+        }
         return dto;
     }
 
-    public static Funcionario toEntity(FuncionarioDTO dto) {
+    public Funcionario toEntity(FuncionarioDTO dto) {
         Funcionario funcionario = new Funcionario();
         funcionario.setId(dto.getId());
         funcionario.setNome(dto.getNome());
@@ -25,6 +39,10 @@ public class FuncionarioConverter {
         funcionario.setTelefone(dto.getTelefone());
         funcionario.setEmail(dto.getEmail());
         funcionario.setDataDeNascimento(dto.getDataDeNascimento());
+
+        if (dto.getDepartamentoId() != null) {
+            funcionario.setDepartamento(departamentoService.BuscarPorId(dto.getDepartamentoId()));
+        }
 
         return funcionario;
     }

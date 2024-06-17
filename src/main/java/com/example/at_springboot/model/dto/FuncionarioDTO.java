@@ -61,11 +61,12 @@ public class FuncionarioDTO {
         this.dataDeNascimento = dataDeNascimento;
     }
 
-    public Long getDepartamentoId() {
-        return departamentoId;
-    }
 
     public void setDepartamentoId(Long departamentoId) {
         this.departamentoId = departamentoId;
+    }
+
+    public Long getDepartamentoId (){
+        return departamentoId;
     }
 }

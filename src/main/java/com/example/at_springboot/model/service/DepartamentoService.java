@@ -19,7 +19,7 @@ public class DepartamentoService {
     }
 
     public Departamento BuscarPorId(Long id) {
-        return departamentoRepository.findById(id).get();
+        return departamentoRepository.findById(id) .orElseThrow(() -> new RuntimeException("Departamento não encontrado com ID: " + id));
     }
 
     public Departamento Salvar(Departamento departamento) {

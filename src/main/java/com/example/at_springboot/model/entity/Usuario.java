@@ -9,14 +9,6 @@ public class Usuario {
     private String senha;
     private String papel;
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setId(String id) {
-        this.senha = senha;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -25,11 +17,19 @@ public class Usuario {
         this.nome = nome;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public String getPapel() {
         return papel;
     }
 
-    public void setEmail(String papel) {
+    public void setPapel(String papel) {
         this.papel = papel;
     }
 }

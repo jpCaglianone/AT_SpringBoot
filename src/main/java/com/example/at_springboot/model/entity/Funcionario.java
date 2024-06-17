@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class Funcionario {
+public class  Funcionario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,4 +76,6 @@ public class Funcionario {
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
     }
+
+
 }

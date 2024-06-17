@@ -5,3 +5,6 @@ spring:
     user:
       name: meuusuario
       password: minhasenha
+  data:
+    mongodb:
+      uri=mongodb://localhost:27017/sua_base_de_dados:
