@@ -1,14 +1,11 @@
-# Use a imagem base do JDK
-FROM openjdk:17-jdk-alpine
+# Usar a versão correta do JDK
+FROM openjdk:21-jdk-slim
 
-# Define um argumento para o JAR do aplicativo
-ARG JAR_FILE=target/*.jar
+# Definir o diretório de trabalho dentro do container
+WORKDIR /app
 
-# Copie o JAR para a imagem Docker
-COPY ${JAR_FILE} app.jar
+# Copiar o JAR do diretório alvo para o diretório de trabalho dentro do container
+COPY target/AT_SpringBoot-0.0.1-SNAPSHOT.jar app.jar
 
-# Exponha a porta que a aplicação irá rodar
-EXPOSE 8080
-
-# Comando para rodar a aplicação
-ENTRYPOINT ["java","-jar","/app.jar"]
+# Comando para executar a aplicação
+ENTRYPOINT ["java", "-jar", "app.jar"]
