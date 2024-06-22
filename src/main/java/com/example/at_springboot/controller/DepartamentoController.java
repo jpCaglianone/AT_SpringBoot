@@ -61,11 +61,13 @@ public class DepartamentoController {
         }
     }
 
-    @GetMapping("/um")
-    public Optional<Departamento> um (@RequestBody Long id){
+    @GetMapping("/listarUm")
+    public Optional<Departamento> listarUm (@RequestBody Long id){
 
         Optional<Departamento> departamento = Optional.ofNullable(departamentoService.BuscarPorId(id));
 
         return departamento;
     }
+
+
 }

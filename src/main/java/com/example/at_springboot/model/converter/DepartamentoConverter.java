@@ -4,8 +4,6 @@ import com.example.at_springboot.model.entity.Departamento;
 import com.example.at_springboot.model.entity.Funcionario;
 import com.example.at_springboot.model.dto.DepartamentoDTO;
 
-import java.util.stream.Collectors;
-
 public class DepartamentoConverter {
 
     public static DepartamentoDTO departamentoDTO(Departamento departamento) {

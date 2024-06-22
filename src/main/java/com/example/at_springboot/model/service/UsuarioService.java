@@ -29,4 +29,5 @@ public class UsuarioService {
     public void deletar(String id) {
         usuarioRepository.deleteById(id);
     }
+
 }
